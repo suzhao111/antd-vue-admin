@@ -1,12 +1,9 @@
 <template>
-  <span>头部</span>
+  <div>stepform--info--step2</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped>
-.header {
-}
-</style>
+<style></style>
