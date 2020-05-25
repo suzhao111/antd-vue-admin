@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="desc">Ant Design Vue Pro</div>
+    <div class="desc">管理后台</div>
     <router-view></router-view>
   </div>
 </template>

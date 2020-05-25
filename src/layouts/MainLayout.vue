@@ -1,5 +1,5 @@
 <template>
-  <div>分析分析分析</div>
+  <router-view></router-view>
 </template>
 
 <script>

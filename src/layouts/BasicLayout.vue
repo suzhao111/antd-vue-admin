@@ -8,7 +8,7 @@
         collapsible
       >
         <div class="logo">后台</div>
-        <SideMenu :theme="navTheme" />
+        <SideMenu :theme="navTheme" :collapsed="collapsed" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">

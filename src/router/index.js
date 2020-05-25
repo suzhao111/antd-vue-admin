@@ -44,8 +44,8 @@ const routes = [
         path: "/dashboard",
         name: "dashboard",
         meta: { icon: "dashboard", title: "仪表盘" },
-        // component: () =>
-        //   import(/* webpackChunkName: "layout" */ "../layouts/UserLayout.vue"), //异步加载
+        component: () =>
+          import(/* webpackChunkName: "layout" */ "../layouts/MainLayout.vue"), //异步加载
         // component: { render: h => h(" router-view ") },
         children: [
           {
@@ -66,18 +66,20 @@ const routes = [
         meta: { icon: "form", title: "表单" },
         name: "form表单",
         component: () =>
-          import(/* webpackChunkName: "layout" */ "../layouts/UserLayout.vue"), //异步加载
-        // component: { render: h => h(" router-view ") }
+          import(/* webpackChunkName: "layout" */ "../layouts/MainLayout.vue"), //异步加载
+        // component: { render: h => h(" router-view ") },
         children: [
           {
-            path: "form/basic-form",
+            path: "/form/basic-form",
             name: "basicform",
             meta: { title: "基础表单" },
             component: () =>
-              import(/* webpackChunkName: "form" */ "../views/Form/BasicForm")
+              import(
+                /* webpackChunkName: "form" */ "../views/Form/BasicForm.vue"
+              )
           },
           {
-            path: "form/step-form",
+            path: "/form/step-form",
             name: "stepform",
             meta: { title: "fenbu表单" },
             hideChildrenMenu: true, //不显示子菜单
