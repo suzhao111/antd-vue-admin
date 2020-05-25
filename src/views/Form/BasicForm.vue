@@ -1,5 +1,5 @@
 <template>
-  <div>basic form</div>
+  <div>basic form--基础表单</div>
 </template>
 
 <script>
