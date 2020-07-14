@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     getMenuData(routes = [], parentKeys = [], selectedKey) {
-      console.log(routes, "====执行getMenuData=========");
+      //   console.log(routes, "====执行getMenuData=========");
       const menuData = [];
       routes.forEach(item => {
         //本级菜单可显示
@@ -112,7 +112,7 @@ export default {
           );
         }
 
-        console.log("====执行的果果=========", menuData);
+        // console.log("====执行的果果=========", menuData);
       });
       //   console.log("====执行的果果=========", menuData);
       return menuData;

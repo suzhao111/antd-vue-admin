@@ -1,8 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import findLast from "lodash/findLast";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import NotFound from "../views/404.vue";
+import Forbidden from "../views/403.vue";
+import { check, isLogin } from "@/utils/auth";
 
 Vue.use(VueRouter);
 
@@ -34,6 +37,7 @@ const routes = [
   //   使用基础布局
   {
     path: "/",
+    meta: { authority: ["admin", "guest"] },
     component: () =>
       import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout.vue"),
     children: [
@@ -111,6 +115,12 @@ const routes = [
   },
 
   {
+    path: "/403",
+    name: "403",
+    hideInMenu: true,
+    component: Forbidden
+  },
+  {
     path: "*",
     name: "404",
     hideInMenu: true,
@@ -128,7 +138,19 @@ router.beforeEach((to, from, next) => {
   if (to.path != from.path) {
     NProgress.start();
   }
-
+  const record = findLast(to.matched, record => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login"
+      });
+    } else if (to.path !== "/403") {
+      next({
+        path: "/403"
+      });
+    }
+    NProgress.done();
+  }
   next();
 });
 
