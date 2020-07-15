@@ -2,6 +2,7 @@ import axios from "axios";
 import { notification } from "ant-design-vue";
 
 function request(options) {
+  console.log("请求===", options);
   return axios(options)
     .then(res => {
       return res;

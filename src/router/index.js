@@ -106,6 +106,14 @@ const routes = [
                   import(
                     /* webpackChunkName: "form" */ "../views/Form/StepForm/Step2"
                   )
+              },
+              {
+                path: "/form/step-form/result",
+                name: "confirm",
+                component: () =>
+                  import(
+                    /* webpackChunkName: "form" */ "../views/Form/StepForm/Step3"
+                  )
               }
             ]
           }
