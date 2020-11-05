@@ -59,6 +59,15 @@ const routes = [
               import(
                 /* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis.vue"
               )
+          },
+          {
+            path: "/dashboard/map",
+            name: "map",
+            meta: { title: "地图" },
+            component: () =>
+              import(
+                /* webpackChunkName: "dashboard" */ "../views/Dashboard/Map.vue"
+              )
           }
         ]
       },

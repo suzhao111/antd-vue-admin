@@ -13,6 +13,9 @@ import {
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+
+// import echarts from "echarts";
+// Vue.prototype.$echarts = echarts;
 // import "ant-design-vue/lib/button/style";
 // import "ant-design-vue/dist/antd.less";
 

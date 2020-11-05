@@ -1,7 +1,8 @@
 <template>
   <div>
-    分析分析分析
     <Chart :option="chartOption" style="height:400px" />
+    <Chart :option="mapChartOption" style="height:400px; widht: 400px" />
+    <Chart :option="lineChartOption" style="height:600px;" />
   </div>
 </template>
 
@@ -17,13 +18,34 @@ export default {
   },
   data() {
     return {
-      chartOption: {}
+      chartOption: {},
+      lineChartOption: {
+        title: {
+          text: "折线图"
+        },
+        xAxis: {
+          type: "category",
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: "line"
+          }
+        ]
+      },
+      mapChartOption: {}
     };
   },
   mounted() {
     this.getChartData();
+    this.getCompChartData();
     this.interval = setInterval(() => {
       this.getChartData();
+      this.getCompChartData();
       //   this.chartOption.series[0].data = this.chartOption.series[0].data.map(
       //     () => random(100)
       //   );
@@ -43,7 +65,7 @@ export default {
         .then(response => {
           this.chartOption = {
             title: {
-              text: "ECharts 入门示例"
+              text: "柱状图"
             },
             tooltip: {},
             xAxis: {
@@ -59,6 +81,94 @@ export default {
             ]
           };
         });
+    },
+
+    getCompChartData() {
+      this.mapChartOption = {
+        title: {
+          text: "中国地图"
+        },
+        tooltip: {},
+        legend: {
+          orient: "vertical",
+          left: "left",
+          data: ["10", "23", "46", "55", "5"]
+        },
+        visualMap: {
+          min: 0,
+          max: 100,
+          left: "10%",
+          top: "bottom",
+          text: ["高", "低"],
+          calculable: true,
+          color: ["#0b50b9", "#c3e2f4"]
+        },
+        selectedMode: "single",
+        series: [
+          {
+            name: "数量",
+            type: "map",
+            mapType: "china",
+            itemStyle: {
+              normal: {
+                borderColor: "rgba(0, 0, 0, 0.2)"
+              },
+              emphasis: {
+                shadowOffsetX: 10,
+                shadowOffsetY: 10,
+                shadowBlur: 10,
+                borderWidth: 10,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            },
+            showLegendSymbol: true,
+            label: {
+              normal: {
+                show: true
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            data: [
+              { name: "北京", value: random(100) },
+              { name: "天津", value: random(100) },
+              { name: "上海", value: random(100) },
+              { name: "重庆", value: random(100) },
+              { name: "河北", value: random(100) },
+              { name: "河南", value: random(100) },
+              { name: "云南", value: random(100) },
+              { name: "辽宁", value: random(100) },
+              { name: "黑龙江", value: random(100) },
+              { name: "湖南", value: random(100) },
+              { name: "安徽", value: random(100) },
+              { name: "山东", value: random(100) },
+              { name: "新疆", value: random(100) },
+              { name: "江苏", value: random(100) },
+              { name: "浙江", value: random(100) },
+              { name: "江西", value: random(100) },
+              { name: "湖北", value: random(100) },
+              { name: "广西", value: random(100) },
+              { name: "甘肃", value: random(100) },
+              { name: "山西", value: random(100) },
+              { name: "内蒙古", value: random(100) },
+              { name: "陕西", value: random(100) },
+              { name: "吉林", value: random(100) },
+              { name: "福建", value: random(100) },
+              { name: "贵州", value: random(100) },
+              { name: "广东", value: random(100) },
+              { name: "青海", value: random(100) },
+              { name: "西藏", value: random(100) },
+              { name: "四川", value: random(100) },
+              { name: "宁夏", value: random(100) },
+              { name: "海南", value: random(100) },
+              { name: "台湾", value: random(100) },
+              { name: "香港", value: random(100) },
+              { name: "澳门", value: random(100) }
+            ]
+          }
+        ]
+      };
     }
   },
   beforeDestroy() {
