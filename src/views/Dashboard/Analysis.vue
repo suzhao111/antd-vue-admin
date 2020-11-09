@@ -3,6 +3,7 @@
     <Chart :option="chartOption" style="height:400px" />
     <Chart :option="mapChartOption" style="height:400px; widht: 400px" />
     <Chart :option="lineChartOption" style="height:600px;" />
+    <Chart :option="pieChartOption" style="height:600px;" />
   </div>
 </template>
 
@@ -37,7 +38,8 @@ export default {
           }
         ]
       },
-      mapChartOption: {}
+      mapChartOption: {},
+      pieChartOption: {}
     };
   },
   mounted() {
@@ -46,6 +48,7 @@ export default {
     this.interval = setInterval(() => {
       this.getChartData();
       this.getCompChartData();
+      this.getPieChartData();
       //   this.chartOption.series[0].data = this.chartOption.series[0].data.map(
       //     () => random(100)
       //   );
@@ -165,6 +168,26 @@ export default {
               { name: "台湾", value: random(100) },
               { name: "香港", value: random(100) },
               { name: "澳门", value: random(100) }
+            ]
+          }
+        ]
+      };
+    },
+
+    getPieChartData() {
+      this.pieChartOption = {
+        title: { text: "饼状图" },
+        tooltip: {},
+        lengend: {},
+        series: [
+          {
+            name: "销售量",
+            type: "pie",
+            data: [
+              { name: "西北地区", value: random(100) },
+              { name: "西南地区", value: random(100) },
+              { name: "东北地区", value: random(100) },
+              { name: "华南地区", value: random(100) }
             ]
           }
         ]
