@@ -1,9 +1,15 @@
 <template>
-  <div>404</div>
+  <div style="text-align: center;">
+    <p>404页面</p>
+    <Logo style="" />
+  </div>
 </template>
 
 <script>
-export default {};
+import Logo from "@/assets/logo.svg";
+export default {
+  components: { Logo }
+};
 </script>
 
 <style></style>
