@@ -1,1 +1,1 @@
-export { default as SettingOutLine } from "@ant-design/icons/lib/outline/SettingOutLine";
+export { default as SettingOutline } from "@ant-design/icons/lib/outline/SettingOutline";
