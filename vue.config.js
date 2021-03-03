@@ -1,3 +1,6 @@
+const webpack = require("webpack");
+const path = require("path");
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -8,6 +11,17 @@ module.exports = {
 
         // 这里的选项会传递给 css-loader
         javascriptEnabled: true
+      }
+    }
+  },
+  configureWebpack: {
+    plugins: [
+      // Ignore all locale files of moment.js
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    ],
+    resolve: {
+      alias: {
+        "@ant-design/icons/lib/dist$": path.resolve(__dirname, "./src/icons.js")
       }
     }
   },

@@ -3,7 +3,9 @@
 </template>
 
 <script>
-import echarts from "echarts";
+import echarts from "echarts/lib/echarts";
+import "echarts/lib/chart/bar";
+import "echarts/lib/component/title";
 import "echarts/map/js/china.js"; //引入zhongguo 地图
 import debounce from "lodash/debounce"; // 防抖
 import { addListener, removeListener } from "resize-detector"; // 监听
