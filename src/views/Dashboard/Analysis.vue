@@ -1,5 +1,7 @@
 <template>
   <div>
+    <a-date-picker @change="onChange" />
+
     <Chart :option="chartOption" style="height:400px" />
     <Chart :option="mapChartOption" style="height:400px; widht: 400px" />
     <Chart :option="lineChartOption" style="height:600px;" />

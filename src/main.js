@@ -7,7 +7,10 @@ import {
   Radio,
   Menu,
   Form,
-  Input
+  Input,
+  LocaleProvider,
+  Dropdown,
+  DatePicker
 } from "ant-design-vue";
 // import Antd from "ant-design-vue";
 import App from "./App.vue";
@@ -28,6 +31,9 @@ Vue.use(Radio);
 Vue.use(Menu);
 Vue.use(Form);
 Vue.use(Input);
+Vue.use(LocaleProvider);
+Vue.use(Dropdown);
+Vue.use(DatePicker);
 // Vue.use(Submenu);
 // Vue.use(Antd);
 

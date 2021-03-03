@@ -1,5 +1,13 @@
 <template>
-  <div>测试页面</div>
+  <div>
+    <p>测试页面</p>
+    <div>
+      <a-date-picker @change="onChange" />
+      <a-month-picker @change="onChange" />
+      <a-range-picker @change="onChange" />
+      <a-week-picker @change="onChange" />
+    </div>
+  </div>
 </template>
 
 <script>
