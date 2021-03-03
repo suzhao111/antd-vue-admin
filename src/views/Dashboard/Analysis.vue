@@ -3,6 +3,8 @@
     <a-date-picker @change="onChange" />
 
     <Chart :option="chartOption" style="height:400px" />
+    <chartCode></chartCode>
+
     <Chart :option="mapChartOption" style="height:400px; widht: 400px" />
     <Chart :option="lineChartOption" style="height:600px;" />
     <Chart :option="pieChartOption" style="height:600px;" />
@@ -10,6 +12,7 @@
 </template>
 
 <script>
+import chartCode from "!!raw-loader!@/components/Chart";
 import Chart from "@/components/Chart";
 import random from "lodash/random";
 // import axios from "axios";
@@ -17,7 +20,8 @@ import request from "@/utils/request";
 
 export default {
   components: {
-    Chart
+    Chart,
+    chartCode
   },
   data() {
     return {

@@ -16,6 +16,7 @@ export default {
       default: () => {}
     }
   },
+
   watch: {
     option(val) {
       this.chart.setOption(val);

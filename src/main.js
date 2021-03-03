@@ -16,6 +16,8 @@ import {
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import VueHighlightJS from "vue-highlightjs";
+import "highlight.js/styles/github.css";
 
 // import echarts from "echarts";
 // Vue.prototype.$echarts = echarts;
@@ -36,6 +38,9 @@ Vue.use(Dropdown);
 Vue.use(DatePicker);
 // Vue.use(Submenu);
 // Vue.use(Antd);
+
+// Tell Vue.js to use vue-highlightjs
+Vue.use(VueHighlightJS);
 
 new Vue({
   router,
