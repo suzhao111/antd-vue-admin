@@ -10,7 +10,8 @@ import {
   Input,
   LocaleProvider,
   Dropdown,
-  DatePicker
+  DatePicker,
+  Message
 } from "ant-design-vue";
 // import Antd from "ant-design-vue";
 import App from "./App.vue";
@@ -36,6 +37,8 @@ Vue.use(Input);
 Vue.use(LocaleProvider);
 Vue.use(Dropdown);
 Vue.use(DatePicker);
+// Vue.use(Message);
+Vue.prototype.$message = Message; // message  confirm  需要挂载，与其他组件不同
 // Vue.use(Submenu);
 // Vue.use(Antd);
 

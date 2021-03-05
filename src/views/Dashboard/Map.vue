@@ -1,11 +1,9 @@
 <template>
   <div>
     <a-date-picker @change="onChange" />
-
+    <p>{{ name }}</p>
     <Chart :option="pieChartOption" style="height:600px;" />
-
     <!-- <pre v-highlightjs="chartCode"><code class="html"></code></pre> -->
-
     <!-- <chartCode></chartCode> -->
   </div>
 </template>
@@ -22,10 +20,22 @@ export default {
   },
   data() {
     return {
-      pieChartOption: {}
+      pieChartOption: {},
+      name: "lucy"
     };
   },
+  beforeCreate() {
+    console.log("before create", this.name);
+  },
+  created() {
+    console.log(" create", this.name);
+  },
+  beforeMount() {
+    console.log(" beforeMount", this.name);
+  },
+
   mounted() {
+    console.log(" mounted", this.name, this);
     this.getPieChartData();
     // this.interval = setInterval(() => {
     //   this.getPieChartData();
