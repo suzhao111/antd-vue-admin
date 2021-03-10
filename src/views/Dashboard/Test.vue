@@ -1,6 +1,17 @@
 <template>
   <div>
     <p @click="openMessage">{{ name }}</p>
+    <p>姓名翻转：{{ reverseName }}</p>
+    <a-input v-model="name"></a-input>
+    <a-input v-model="reverseName"></a-input>
+
+    <p>
+      姓名_新的，可以根据输入的翻转调整：<a-input
+        v-model="reverseNewName"
+      ></a-input>
+    </p>
+    <p>姓名翻转_新的，可以根据输入的翻转调整：{{ reverseNewName }}</p>
+
     <a-button @click="example">点击更改那么</a-button>
     <span title="悬停title">一个小段落</span>
     <user
@@ -9,7 +20,7 @@
       @handleClickSonMethod="handleClickSonMethod"
     />
     <p ref="aa">姓名： {{ name }}</p>
-
+    <li v-for="n in evenNumbers" :key="n">{{ n }}</li>
     <h1 ref="hello">正文： {{ value }}</h1>
     <a-button type="danger" @click="get">点击</a-button>
   </div>
@@ -25,8 +36,39 @@ export default {
   data() {
     return {
       name: "lucy",
-      value: "hello world ~"
+      value: "hello world ~",
+      numbers: [1, 2, 3, 4, 5]
     };
+  },
+  computed: {
+    reverseName: function() {
+      return this.name
+        .split("")
+        .reverse()
+        .join(""); // name是响应式依赖
+      // return Date.now()   //  非响应式依赖
+    },
+    reverseNewName: {
+      get: function() {
+        return this.name
+          .split("")
+          .reverse()
+          .join("");
+      },
+      set: function(val) {
+        this.name = val
+          .split("")
+          .reverse()
+          .join("");
+      }
+      // name是响应式依赖
+      // return Date.now()   //  非响应式依赖
+    },
+    evenNumbers: function() {
+      return this.numbers.filter(function(number) {
+        return number % 2 === 0;
+      });
+    }
   },
   beforeCreate() {
     // console.log("before create", this.name);
