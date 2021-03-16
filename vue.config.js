@@ -20,9 +20,22 @@ module.exports = {
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
     resolve: {
+      extensions: [".js", ".vue", ".json", ".ts"], //加入.ts
       alias: {
         "@ant-design/icons/lib/dist$": path.resolve(__dirname, "./src/icons.js")
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: "ts-loader",
+          exclude: /node_modules/,
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
+          }
+        }
+      ]
     }
   },
 

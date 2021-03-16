@@ -23,6 +23,8 @@
     <li v-for="n in evenNumbers" :key="n">{{ n }}</li>
     <h1 ref="hello">正文： {{ value }}</h1>
     <a-button type="danger" @click="get">点击</a-button>
+
+    <div v-on:scroll.passive="onScroll">...</div>
   </div>
 </template>
 
@@ -123,6 +125,9 @@ export default {
     handleClickSonMethod() {
       console.log("触发了自定义的方法");
       this.openMessage();
+    },
+    onScroll() {
+      console.log("正在滚动……");
     }
   },
   provide: function() {
