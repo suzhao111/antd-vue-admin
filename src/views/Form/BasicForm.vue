@@ -67,9 +67,9 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      console.log(this.fieldA);
+      //   console.log(this.fieldA);
       this.form.setFieldsValue({ fieldA: "hello world" });
-      console.log(this.fieldA); // 不会改变，还是hello
+      //   console.log(this.fieldA); // 不会改变，还是hello
     }, 3000);
   },
 
@@ -106,4 +106,32 @@ export default {
     }
   }
 };
+
+// ================================== 练习  测试  ==================================
+// 对象的深拷贝
+// let obj1 = {
+//   a: "start",
+//   b: {
+//     x: "hello",
+//     y: 300
+//   },
+//   c: ["中文", "英文"]
+// };
+// function deepClone(startObj) {
+//   let obj = startObj.constructor === Array ? [] : {};
+//   for (let i in startObj) {
+//     if (typeof startObj[i] === "object") {
+//       obj[i] = deepClone(startObj[i]);
+//     } else {
+//       obj[i] = startObj[i];
+//     }
+//   }
+//   return obj;
+// }
+// let copyObj = deepClone(obj1);
+// let obj2 = JSON.parse(JSON.stringify(obj1));
+// obj1.c[1] = "faguo";
+// console.log(obj1, copyObj, obj2);
+
+// js舍入误差
 </script>
