@@ -145,17 +145,62 @@ export default {
 // console.log(a);
 
 // 闭包
-var btns = [{ name: "b1" }, { name: "b2" }, { name: "b3" }];
-function bind() {
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].fun = function() {
-      console.log(i);
-    };
-  }
+// var btns = [{ name: "b1" }, { name: "b2" }, { name: "b3" }];
+// function bind() {
+//   for (let i = 0; i < btns.length; i++) {
+//     //   for (var i = 0; i < btns.length; i++) {
+//     // (function fun(a) {
+//     //   btns[i].fun = function() {
+//     //     console.log(a);
+//     //   };
+//     // })(i);
+
+//     btns[i].fun = function() {
+//       console.log(i);
+//     };
+//   }
+// }
+// bind();
+// console.log(btns);
+// btns[1].fun();
+// btns[2].fun();
+// btns[0].fun();
+
+// 原型
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   //   this.run = function() {
+//   //     console.log("run", name);
+//   //   };
+// }
+// Person.prototype.run = function() {
+//   console.log("run,", this.name);
+// };
+// let p1 = new Person("lihua", 34);
+// let p2 = new Person("wagnlei", 27);
+// console.log(p1, p2);
+// p1.run();
+// p2.run();
+
+// Object.defineProperty(obj, property, descriptor)
+var dataObj = {};
+function reactive(obj, key, val) {
+  Object.defineProperty(obj, key, {
+    get() {
+      console.log("触发get方法=====", key, val);
+      return val;
+    },
+    set(newVal) {
+      if (newVal !== val) {
+        console.log("触发set方法=====", key, val);
+        val = newVal;
+      }
+    }
+  });
 }
-bind();
-console.log(btns);
-btns[1].fun();
-btns[2].fun();
-btns[3].fun();
+reactive(dataObj, "age", 12);
+console.log(dataObj.age);
+dataObj.age = 18;
+console.log(dataObj.age);
 </script>
