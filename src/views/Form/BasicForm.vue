@@ -134,4 +134,28 @@ export default {
 // console.log(obj1, copyObj, obj2);
 
 // js舍入误差
+
+// 暂时性死区
+// var a = 1;
+// {
+//   console.log(a);
+//   const a = 3; // {}中一但有let  const  块级作用域就会形成一个封闭作用域，与外界无关。在这数据声明之前访问数据，会报错，造成暂时性死区
+//   console.log(a);
+// }
+// console.log(a);
+
+// 闭包
+var btns = [{ name: "b1" }, { name: "b2" }, { name: "b3" }];
+function bind() {
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].fun = function() {
+      console.log(i);
+    };
+  }
+}
+bind();
+console.log(btns);
+btns[1].fun();
+btns[2].fun();
+btns[3].fun();
 </script>
