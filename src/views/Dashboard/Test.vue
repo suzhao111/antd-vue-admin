@@ -20,16 +20,36 @@
       @handleClickSonMethod="handleClickSonMethod"
     />
     <p ref="aa">姓名： {{ name }}</p>
-    <li v-for="n in evenNumbers" :key="n">{{ n }}</li>
+    <!-- <li v-for="n in evenNumbers" :key="n">{{ n }}</li> -->
     <h1 ref="hello">正文： {{ value }}</h1>
     <a-button type="danger" @click="get">点击</a-button>
 
     <div v-on:scroll.passive="onScroll">...</div>
+
+    <!-- <ul> -->
+    <div v-for="(item, index) in list" :key="index">
+      <a-input v-model="list[index]">{{ item }}</a-input>
+    </div>
+    <a-input v-model="list.length"></a-input>
+    <!-- </ul> -->
+    <a-button @click="changeArray">点击修改list[1]的值</a-button>
+    <p v-for="(val, key) in obj" :key="key">{{ key }} : {{ val }}</p>
+    <a-input v-model="obj.name"></a-input>
+    <a-input v-model="obj.nation"></a-input>
+    <a-button @click="changeObj">点击修改obj.age的值</a-button>
+
+    <ul id="ultest" style="background: pink">
+      <li>1 <span style="color: red;">你好呀</span></li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
   </div>
 </template>
 
 <script>
 import User from "@/components/User";
+import random from "lodash/random";
 
 export default {
   components: {
@@ -39,7 +59,13 @@ export default {
     return {
       name: "lucy",
       value: "hello world ~",
-      numbers: [1, 2, 3, 4, 5]
+      numbers: [1, 2, 3, 4, 5],
+      list: [34, 35, 67],
+      obj: {
+        name: "susan",
+        // age: "99"
+        age: { time: 911 }
+      }
     };
   },
   computed: {
@@ -96,7 +122,12 @@ export default {
       this.$root
     );
     this.$nextTick(() => {
-      // todo
+      let ul = document.getElementById("ultest");
+      console.log("取出接单========", ul);
+      ul.addEventListener("click", function(e) {
+        console.log(e.currentTarget);
+        console.log(e.target);
+      });
     });
   },
   methods: {
@@ -128,6 +159,27 @@ export default {
     },
     onScroll() {
       console.log("正在滚动……");
+    },
+    changeArray() {
+      //   this.obj.age = random(100);
+      //   this.obj.age = 20;
+      //   this.list[1] = random(100);  // 不是响应式
+      //   this.list.push(random(1000));  // 响应式
+      //   this.$set(this.list, 1, random(100));  // 响应式
+
+      console.log(this.list);
+
+      //   this.obj.age = 20;
+      //   console.log(this.obj);
+    },
+    changeObj() {
+      this.obj.age.time = random(100);
+      this.obj.nation = "china";
+      //   this.obj.nation = random(200);
+      //   delete this.obj.name;
+      //   this.$set(this.obj, "nation", "usa");
+      //   this.obj.age = random(100);
+      console.log(this.obj);
     }
   },
   provide: function() {
@@ -135,6 +187,9 @@ export default {
   },
   beforeDestroy() {}
 };
+
+// let ul = document.getElementById("ultest");
+//
 </script>
 
 <style></style>
