@@ -52,6 +52,7 @@
 </template>
 
 <script>
+// import { resolve } from "dns";
 export default {
   data() {
     this.form = this.$form.createForm(this); // input中就不能使用双向绑定了，而是用v-decorator将数据托管给form
@@ -353,4 +354,162 @@ export default {
 //   .catch(err => {
 //     console.log(err);
 //   });
+
+// let arr = ["es6", ["es7", "es8"]];
+// console.log(arr.includes("es7"));
+
+// async function foo() {
+//   return "111";
+// }
+// console.log(foo());
+
+// async function foo() {
+//   let result = await "111";
+//   console.log(result);
+// }
+// foo();
+
+// function timeout(a) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (a > 0) {
+//         resolve("resolve=====" + 111);
+//       } else {
+//         reject("reject=========" + 11111);
+//       }
+//     }, 1000);
+//   });
+// }
+// async function foo() {
+//   //   let result = timeout();
+//   let result = await timeout(1);
+//   console.log(result);
+//   console.log(2);
+// }
+// foo();
+
+// async function foo() {
+//   return await timeout();
+// }
+
+// foo().then(res => {
+//   console.log(res);
+// });
+
+// timeout()
+
+// let obj = { name: "suzhao", age: 18 };
+// console.log(Object.is(obj, {}));
+
+// function timeout(time) {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve({
+//         value: time,
+//         done: false
+//       });
+//     }, time);
+//   });
+// }
+// const arr = [timeout(1000), timeout(2000), timeout(3000)];
+// arr[Symbol.asyncIterator] = function() {
+//   let nextIndex = 0;
+//   return {
+//     next() {
+//       return nextIndex < arr.length
+//         ? arr[nextIndex++]
+//         : Promise.resolve({ value: undefined, done: true });
+//     }
+//   };
+// };
+// async function test() {
+//   for await (let item of arr) {
+//     console.log(item);
+//   }
+// }
+// test();
+
+// let obj1 = {
+//   name: "suzhao",
+//   age: 18,
+//   class: 3,
+//   grade: 5,
+//   score: { math: 100, english: 98 }
+// };
+// let obj2 = { ...obj1 };
+// obj1.score.math = 90;
+// console.log(obj1, obj2);
+// let { name, grade, ...rest } = obj1;
+// console.log(name, grade, rest);
+
+// const course = {
+//   math: 100,
+//   chinese: 80,
+//   english: 98
+// };
+// let res = Object.entries(course).filter(([key, val]) => {
+//   console.log(key);
+//   return val > 90;
+// });
+// console.log(res);
+// console.log(Object.fromEntries(res));
+
+// let str = "    suzhao   ";
+// console.log(str.trim());
+// console.log(str.trimStart());
+// console.log(str.trimEnd());
+
+// let arr = [1, 2, 3, [4, 5, [7, 8, 9]]];
+// let arr = [1, 2, 3, [5, 6], 4, 3, 3];
+// console.log(arr.flat().flat()) ;
+// console.log(arr.flat(Infinity));
+// let res = arr.flatMap(val => val + 1);
+// let res = arr.map(val => val + 1);
+// console.log(res);
+
+// function fun() {
+//   console.log("fun");
+// }
+// console.log(fun.toString());
+
+// Promise.allSettled([
+//   Promise.resolve({ code: 200, msg: "1111" }),
+//   Promise.reject({ code: 400, msg: "" }),
+//   Promise.resolve({ code: 200, msg: "3333" })
+// ])
+//   .then(res => {
+//     let data = res.filter(item => {
+//       return item.status === "fulfilled";
+//     });
+//     console.log("成功+++++", data);
+//   })
+//   .catch(err => {
+//     console.log("失败", err);
+//   });
+
+// Promise.all([
+//   Promise.resolve({ code: 200, msg: "1111" }),
+//   Promise.reject({ code: 400, msg: "" }),
+//   Promise.resolve({ code: 200, msg: "3333" })
+// ])
+//   .then(res => {
+//     console.log(res);
+//   })
+//   .catch(err => {
+//     console.log(err); // {code: 400, msg: "2222"}
+//   });
+
+// let user = {
+//   name: "suzhao",
+//   address: {
+//     city: "hangzhou",
+//     getNum() {
+//       return 1234;
+//     }
+//   }
+// };
+// let addressNumEs5 =
+//   user && user.address && user.address.getNum && user.address.getNum();
+// let addressNum = user?.address?.getNum?.();
+// console.log(addressNumEs5, addressNum);
 </script>
