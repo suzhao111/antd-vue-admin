@@ -1,54 +1,85 @@
 <template>
-  <a-form :layout="formLayout" :form="form">
-    <a-form-item
-      label="Form Layout"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-radio-group
-        default-value="horizontal"
-        @change="handleFormLayoutChange"
+  <div>
+    <a-form :layout="formLayout" :form="form">
+      <a-form-item
+        label="Form Layout"
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
       >
-        <a-radio-button value="horizontal">
-          Horizontal
-        </a-radio-button>
-        <a-radio-button value="vertical">
-          Vertical
-        </a-radio-button>
-        <a-radio-button value="inline">
-          Inline
-        </a-radio-button>
-      </a-radio-group>
-    </a-form-item>
-    <a-form-item
-      label="Field A"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-input
-        v-decorator="[
-          'fieldA',
-          {
-            initialValue: fieldA,
-            rules: [{ required: true, min: 6, message: '必须大于5个字符' }]
-          }
-        ]"
-        placeholder="input placeholder"
+        <a-radio-group
+          default-value="horizontal"
+          @change="handleFormLayoutChange"
+        >
+          <a-radio-button value="horizontal">
+            Horizontal
+          </a-radio-button>
+          <a-radio-button value="vertical">
+            Vertical
+          </a-radio-button>
+          <a-radio-button value="inline">
+            Inline
+          </a-radio-button>
+        </a-radio-group>
+      </a-form-item>
+      <a-form-item
+        label="Field A"
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+      >
+        <a-input
+          v-decorator="[
+            'fieldA',
+            {
+              initialValue: fieldA,
+              rules: [{ required: true, min: 6, message: '必须大于5个字符' }]
+            }
+          ]"
+          placeholder="input placeholder"
+        />
+      </a-form-item>
+      <a-form-item
+        label="Field B"
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+      >
+        <a-input v-decorator="['fieldB']" placeholder="input placeholder" />
+      </a-form-item>
+      <a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
+        <a-button type="primary" @click="handleSubmit">
+          Submit
+        </a-button>
+      </a-form-item>
+    </a-form>
+
+    <!-- <div class="div1">我是第一个</div>
+    <div class="div2">我是第二个</div> -->
+
+    <!-- bfc -->
+    <!-- <div class="container bfc">
+      <img
+        class="left"
+        src="https://tp-app.oss-cn-hangzhou.aliyuncs.com/ios/logo_white.png"
+        alt=""
       />
-    </a-form-item>
-    <a-form-item
-      label="Field B"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-input v-decorator="['fieldB']" placeholder="input placeholder" />
-    </a-form-item>
-    <a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
-      <a-button type="primary" @click="handleSubmit">
-        Submit
-      </a-button>
-    </a-form-item>
-  </a-form>
+      <p class="">bfc一段文字示例</p>
+    </div> -->
+
+    <!-- <div class="content">
+      <div class="header">头部</div>
+      <div class="container">
+        <div class="center col fl">中间内容</div>
+        <div class="left col fl">左侧内容</div>
+        <div class="right col fl">右侧内容</div>
+      </div>
+      <div class="footer">footer</div>
+    </div> -->
+    <!-- 
+    <div class="box">
+      <div class="flex flex1"></div>
+      <div class="flex flex2"></div>
+      <div class="flex flex3"></div>
+    </div> -->
+  </div>
 </template>
 
 <script>
@@ -127,15 +158,20 @@ export default {
 // function deepClone(startObj) {
 //   let obj = startObj.constructor === Array ? [] : {};
 //   for (let i in startObj) {
+//     console.log(i);
+//     // 如果不想拷贝原型上的属性
+//     // if (startObj.hasOwnProperty(i)) {
 //     if (typeof startObj[i] === "object") {
 //       obj[i] = deepClone(startObj[i]);
 //     } else {
 //       obj[i] = startObj[i];
 //     }
+//     // }
 //   }
 //   return obj;
 // }
 // let copyObj = deepClone(obj1);
+// console.log(copyObj);
 // let obj2 = JSON.parse(JSON.stringify(obj1));
 // let obj2 = JSON.stringify(obj1.fun);
 // obj1.c[1] = "faguo";
@@ -192,6 +228,7 @@ export default {
 // Person.prototype.run = function() {
 //   console.log("run,", this.name);
 // };
+// Person.prototype.publicData = "public";
 // let p1 = new Person("lihua", 34);
 // let p2 = new Person("wagnlei", 27);
 // p2.grade = { math: 90, english: 80 };
@@ -208,6 +245,7 @@ export default {
 // let copy = deepClone(p2);
 // copy.name = "susususu";
 // console.log(Person.prototype);
+// console.log(copy);
 // copy.run();
 
 // let p3 = {
@@ -512,4 +550,223 @@ export default {
 //   user && user.address && user.address.getNum && user.address.getNum();
 // let addressNum = user?.address?.getNum?.();
 // console.log(addressNumEs5, addressNum);
+
+// const p3 = Promise.reject("my error").catch(err => {
+//   console.error(err);
+//   //   Promise.reject("reject");
+//   throw new Error("error");
+// });
+// console.log(p3);
+
+// async function fn1() {
+//   return 100;
+// }
+// const res1 = fn1();
+// console.log(res1); // promise 对象，resolved
+// res1.then(data => {
+//   console.log("data==", data);  // 100
+// });
+
+// (async function fun() {
+//   let p = Promise.resolve("错误");
+//   let data = await p;
+//   console.log(data);
+// })();
+
+// (async function fun() {
+//   let p = Promise.resolve("p   成功");
+//   let p1 = Promise.reject("p1  失败");
+//   let p2 = Promise.resolve("p2   成功");
+//   try {
+//     let data = await p;
+//     let data1 = await p1;
+//     let data2 = await p2;
+//     console.log("data===", data);
+//     console.log("data1===", data1);
+//     console.log("data2===", data2);
+//   } catch (err) {
+//     console.log("catch===", err); //  p1  失败
+//   }
+
+//   try {
+//     let data = await p;
+//     console.log("data===", data); // p  成功
+//   } catch (err) {
+//     console.log("catch===", err);
+//   }
+//   try {
+//     let data1 = await p1;
+//     console.log("data1===", data1);
+//   } catch (err) {
+//     console.log("catch===", err); //  p1  失败
+//   }
+//   try {
+//     let data2 = await p2;
+//     console.log("data2===", data2); // p2  成功
+//   } catch (err) {
+//     console.log("catch===", err);
+//   }
+// })();
+
+// (async function fun() {
+//   let p1 = Promise.reject("err1");
+//   let data = await p1; // 报错，不会执行
+//   console.log("data1===", data);
+// })();
+
+// async function as1() {
+//   console.log("as1  start"); // 2，重要，此时还没走到异步，所以先行执行本行代码！！
+//   await as2(); // 先执行 as2 函数体，再执行 await，
+
+//   //   await后面，是callback的内容，即setTimeout(cb, 5000)里面的cb
+//   // 下面一行是异步回调 callback  的内容
+//   console.log("as1   end"); //  5 异步代码
+// }
+// async function as2() {
+//   console.log("as2"); //  3
+// }
+// console.log("script   start"); // 1
+// as1();
+// console.log("script   end"); // 4  到此，同步代码执行完毕
+
+// function muti(num) {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve(num * num);
+//     }, 2000);
+//   });
+// }
+
+// let arr = [1, 2, 3];
+// arr.forEach(async i => { // 同步遍历，2秒后会全部输出
+//   let res = await muti(i);
+//   console.log(res);
+// });
+
+// (async function() {
+//   for (let i of arr) {
+//     // 异步遍历，一个一个输出
+//     let res = await muti(i);
+//     console.log(res);
+//     console.log("ok");
+//   }
+// })();
+
+// console.log(100);
+// 宏任务
+// setTimeout(() => {
+//   console.log(200);
+// });
+// 微任务
+// Promise.resolve().then(() => {
+//   console.log(300);
+// });
+// console.log(400);
+// 顺序：100、400、300、200
+
+// async function async1() {
+//   console.log("async1  start  !"); // 2
+//   await async2();
+//   console.log("async1  end  !"); // 6 微任务 1
+// }
+// async function async2() {
+//   console.log("async2"); // 3
+// }
+// console.log("script  start");  // 1
+// setTimeout(() => {
+//   console.log("setTimeout");  // 8 宏任务 1
+// });
+// async1();
+// new Promise(resolve => {
+//   console.log("promise1");  // 4
+//   resolve();
+// }).then(() => {
+//   console.log("promise2");  // 7 微任务 2
+// });
+// console.log("script  end !");  // 5
 </script>
+
+<style lang="less">
+// .box {
+//   display: flex;
+//   justify-content: space-between;
+//   border: 1px solid #333;
+//   border-radius: 10px;
+//   padding: 10px;
+//   width: 150px;
+//   height: 150px;
+//   .flex {
+//     width: 30px;
+//     height: 30px;
+//     background: pink;
+//     border-radius: 50%;
+//     &.flex2 {
+//       align-self: center;
+//     }
+//     &.flex3 {
+//       align-self: flex-end;
+//     }
+//   }
+// }
+// .content {
+//   width: 100%;
+//   .header,
+//   .footer {
+//     width: 100%;
+//     line-height: 20px;
+//     background: gray;
+//     text-align: center;
+//   }
+//   .footer {
+//     clear: both;
+//   }
+//   .fl {
+//     float: left;
+//   }
+//   .col {
+//     text-align: center;
+//   }
+//   .container {
+//     padding-left: 150px;
+//     padding-right: 200px;
+//     overflow: hidden;
+//     .center {
+//       background: #999;
+//       width: 100%;
+//     }
+//     .left {
+//       width: 150px;
+//       background: pink;
+//       margin-left: -100%;
+//       position: relative;
+//       right: 150px;
+//     }
+//     .right {
+//       width: 200px;
+//       background: yellow;
+//       margin-right: -200px;
+//     }
+//   }
+// }
+// .container {
+//   background: pink;
+//   .left {
+//     float: left;
+//   }
+// }
+// .bfc {
+//   overflow: hidden;
+// }
+// .div1,
+// .div2 {
+//   width: 100px;
+//   height: 100px;
+//   border: 1px solid #333;
+// }
+// .div1 {
+//   margin-bottom: -20px;
+// }
+// .div2 {
+//   margin-top: 2px;
+// }
+</style>
