@@ -79,6 +79,8 @@
       <div class="flex flex2"></div>
       <div class="flex flex3"></div>
     </div> -->
+
+    <input id="ipt" type="text" />
   </div>
 </template>
 
@@ -684,6 +686,20 @@ export default {
 //   console.log("promise2");  // 7 微任务 2
 // });
 // console.log("script  end !");  // 5
+let ipt = document.getElementById("ipt");
+let timer = null;
+ipt.addEventListener("keyup", function() {
+  // setTimeout(() => {
+  //     console.log(ipt.value);
+  // },500)
+  if (timer) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(() => {
+    console.log(ipt.value);
+    timer = null;
+  }, 500);
+});
 </script>
 
 <style lang="less">
