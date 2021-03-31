@@ -80,7 +80,7 @@
       <div class="flex flex3"></div>
     </div> -->
 
-    <input id="ipt" type="text" />
+    <!-- <input id="ipt" type="text" /> -->
   </div>
 </template>
 
@@ -686,20 +686,57 @@ export default {
 //   console.log("promise2");  // 7 微任务 2
 // });
 // console.log("script  end !");  // 5
-let ipt = document.getElementById("ipt");
-let timer = null;
-ipt.addEventListener("keyup", function() {
-  // setTimeout(() => {
-  //     console.log(ipt.value);
-  // },500)
-  if (timer) {
-    clearTimeout(timer);
-  }
-  timer = setTimeout(() => {
-    console.log(ipt.value);
-    timer = null;
-  }, 500);
-});
+// let ipt = document.getElementById("ipt");
+// let timer = null;
+// ipt.addEventListener("keyup", function() {
+//   // setTimeout(() => {
+//   //     console.log(ipt.value);
+//   // },500)
+//   if (timer) {
+//     clearTimeout(timer);
+//   }
+//   timer = setTimeout(() => {
+//     console.log(ipt.value);
+//     timer = null;
+//   }, 500);
+// });
+
+// 判断是否是数组或者对象
+// function isObject(obj) {
+//   return typeof obj === "object" && obj !== null;
+// }
+// // 全等
+// function isEqual(obj1, obj2) {
+//   if (!isObject(obj1) || !isObject(obj2)) {
+//     // 至少有一个是值类型的，一般function不参与全等
+//     return obj1 === obj2;
+//   }
+//   // 针对传了两个相同数据的情况  isEquel(obj1, obj1)
+//   if (obj1 === obj2) {
+//     return true;
+//   }
+//   // 两个都是对象或数据，且不相等
+//   // 1、先取出两个的keys，比较个数
+//   const key1 = Object.keys(obj1);
+//   const key2 = Object.keys(obj2);
+//   if (key1.length !== key2.length) {
+//     return false;
+//   }
+//   // 2、以obj1为基准，依次与obj2比较
+//   for (let key in obj1) {
+//     // 比较当前key的val
+//     let res = isEqual(obj1[key], obj2[key]);
+//     if (!res) {
+//       return false;
+//     }
+//   }
+//   //      3、全相等
+//   return true;
+// }
+
+// const obj1 = [1, 2, 3];
+// const obj2 = [1, 2, 3];
+// console.log(isEqual(obj1, obj2));
 </script>
 
 <style lang="less">
