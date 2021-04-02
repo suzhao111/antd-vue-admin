@@ -737,6 +737,43 @@ export default {
 // const obj1 = [1, 2, 3];
 // const obj2 = [1, 2, 3];
 // console.log(isEqual(obj1, obj2));
+
+// 数组扁平化
+// function flat(arr) {
+//   // 验证是否是多层数组
+//   const isDeep = arr.some(item => item instanceof Array);
+//   if (!isDeep) {
+//     return arr;
+//   }
+//   //主要这里不要用 call，也不要直接 [].concat(arr), call和 apply 的传参方式不同
+//   let res = Array.prototype.concat.apply([], arr);
+//   return flat(res);
+// }
+// let arr = [1, 2, [3, 4, [5, 6]]];
+// console.log(flat(arr));
+
+// 数组去重——传统方式
+function unique1(arr) {
+  let res = [];
+  arr.forEach(item => {
+    if (res.indexOf(item) < 0) {
+      res.push(item);
+    }
+  });
+  return res;
+}
+
+// 数组去重——set方式 (无序，不能重复)
+function unique2(arr) {
+  const set = new Set(arr);
+  return [...set];
+}
+
+const arr = [1, 2, 3, 2, 4, 3, "a", "suzhao", "a", 1, 4];
+let res1 = unique1(arr);
+console.log(res1);
+let res2 = unique2(arr);
+console.log(res2);
 </script>
 
 <style lang="less">
