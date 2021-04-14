@@ -753,27 +753,27 @@ export default {
 // console.log(flat(arr));
 
 // 数组去重——传统方式
-function unique1(arr) {
-  let res = [];
-  arr.forEach(item => {
-    if (res.indexOf(item) < 0) {
-      res.push(item);
-    }
-  });
-  return res;
-}
+// function unique1(arr) {
+//   let res = [];
+//   arr.forEach(item => {
+//     if (res.indexOf(item) < 0) {
+//       res.push(item);
+//     }
+//   });
+//   return res;
+// }
 
-// 数组去重——set方式 (无序，不能重复)
-function unique2(arr) {
-  const set = new Set(arr);
-  return [...set];
-}
+// // 数组去重——set方式 (无序，不能重复)
+// function unique2(arr) {
+//   const set = new Set(arr);
+//   return [...set];
+// }
 
-const arr = [1, 2, 3, 2, 4, 3, "a", "suzhao", "a", 1, 4];
-let res1 = unique1(arr);
-console.log(res1);
-let res2 = unique2(arr);
-console.log(res2);
+// const arr = [1, 2, 3, 2, 4, 3, "a", "suzhao", "a", 1, 4];
+// let res1 = unique1(arr);
+// console.log(res1);
+// let res2 = unique2(arr);
+// console.log(res2);
 </script>
 
 <style lang="less">
