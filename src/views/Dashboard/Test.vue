@@ -1,59 +1,74 @@
 <template>
   <div>
-    <p @click="openMessage">{{ name }}</p>
-    <p>姓名翻转：{{ reverseName }}</p>
-    <a-input v-model="name"></a-input>
-    <a-input v-model="reverseName"></a-input>
-
-    <p>
-      姓名_新的，可以根据输入的翻转调整：<a-input
-        v-model="reverseNewName"
-      ></a-input>
-    </p>
-    <p>姓名翻转_新的，可以根据输入的翻转调整：{{ reverseNewName }}</p>
-
-    <a-button @click="example">点击更改那么</a-button>
-    <span title="悬停title">一个小段落</span>
-    <user
-      ref="userComp"
-      :name="name"
-      @handleClickSonMethod="handleClickSonMethod"
-    />
-    <p ref="aa">姓名： {{ name }}</p>
-    <!-- <li v-for="n in evenNumbers" :key="n">{{ n }}</li> -->
-    <h1 ref="hello">正文： {{ value }}</h1>
-    <a-button type="danger" @click="get">点击</a-button>
-
-    <div v-on:scroll.passive="onScroll">...</div>
-
-    <!-- <ul> -->
-    <div v-for="(item, index) in list" :key="index">
-      <a-input v-model="list[index]">{{ item }}</a-input>
+    <div>
+      <p>组件的自定义v-model —— {{ colorStr }}</p>
+      <button @click="clickAddComp">点击加载以下组件</button>
+      <CustomVModel v-if="showComp" v-model="colorStr">
+        <template v-slot="slotProps">
+          来自子组件的slotData中的值：{{ slotProps.slotData.website }}
+        </template>
+      </CustomVModel>
     </div>
-    <a-input v-model="list.length"></a-input>
-    <!-- </ul> -->
-    <a-button @click="changeArray">点击修改list[1]的值</a-button>
-    <p v-for="(val, key) in obj" :key="key">{{ key }} : {{ val }}</p>
-    <a-input v-model="obj.name"></a-input>
-    <a-input v-model="obj.nation"></a-input>
-    <a-button @click="changeObj">点击修改obj.age的值</a-button>
 
-    <ul id="ultest" style="background: pink">
-      <li>1 <span style="color: red;">你好呀</span></li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-    </ul>
+    <div>
+      <p @click="openMessage">{{ name }}</p>
+      <p>姓名翻转：{{ reverseName }}</p>
+      <a-input v-model="name"></a-input>
+      <a-input v-model="reverseName"></a-input>
+
+      <p>
+        姓名_新的，可以根据输入的翻转调整：<a-input
+          v-model="reverseNewName"
+        ></a-input>
+      </p>
+      <p>姓名翻转_新的，可以根据输入的翻转调整：{{ reverseNewName }}</p>
+
+      <a-button @click="example">点击更改那么</a-button>
+      <span title="悬停title">一个小段落</span>
+      <user
+        ref="userComp"
+        :name="name"
+        @handleClickSonMethod="handleClickSonMethod"
+      />
+      <p ref="aa">姓名： {{ name }}</p>
+      <!-- <li v-for="n in evenNumbers" :key="n">{{ n }}</li> -->
+      <h1 ref="hello">正文： {{ value }}</h1>
+      <a-button type="danger" @click="get">点击</a-button>
+
+      <div v-on:scroll.passive="onScroll">...</div>
+
+      <!-- <ul> -->
+      <div v-for="(item, index) in list" :key="index">
+        <a-input v-model="list[index]">{{ item }}</a-input>
+      </div>
+      <a-input v-model="list.length"></a-input>
+      <!-- </ul> -->
+      <a-button @click="changeArray">点击修改list[1]的值</a-button>
+      <p v-for="(val, key) in obj" :key="key">{{ key }} : {{ val }}</p>
+      <a-input v-model="obj.name"></a-input>
+      <a-input v-model="obj.nation"></a-input>
+      <a-button @click="changeObj">点击修改obj.age的值</a-button>
+
+      <ul id="ultest" style="background: pink">
+        <li>1 <span style="color: red;">你好呀</span></li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import User from "@/components/User";
+import CustomVModel from "@/components/CustomVModel";
 import random from "lodash/random";
 
 export default {
   components: {
-    User
+    User,
+    CustomVModel
+    // CustomVModel: () => import("@/components/CustomVModel") // 异步加载组件
   },
   data() {
     return {
@@ -65,7 +80,9 @@ export default {
         name: "susan",
         // age: "99"
         age: { time: 911 }
-      }
+      },
+      colorStr: "#ccc",
+      showComp: false
     };
   },
   computed: {
@@ -131,6 +148,12 @@ export default {
     });
   },
   methods: {
+    clickAddComp() {
+      this.showComp = !this.showComp;
+    },
+    colorChange(e) {
+      this.colorStr = e;
+    },
     example() {
       // 修改数据
       let that = this;

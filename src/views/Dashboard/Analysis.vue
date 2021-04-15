@@ -13,15 +13,16 @@
 
 <script>
 import chartCode from "!!raw-loader!@/components/Chart";
-import Chart from "@/components/Chart";
+// import Chart from "@/components/Chart";
 import random from "lodash/random";
 // import axios from "axios";
 import request from "@/utils/request";
 
 export default {
   components: {
-    Chart,
-    chartCode
+    // Chart,
+    chartCode,
+    Chart: () => import("@/components/Chart") // 异步加载组件
   },
   data() {
     return {
